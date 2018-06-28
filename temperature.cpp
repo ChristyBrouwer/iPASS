@@ -51,25 +51,43 @@ void temperature::request(){
 	while(pin.get() == 0){};
 };
 
-int temperature::temp(){
-	int hum1 = getByte();
-	int hum2 = getByte();
-	int tem1 = getByte();
-	int tem2 = getByte();
-	int sum = getByte();
-	hwlib::cout << "The humidity is: " << hum1 << "," << hum2 << hwlib::endl;
-	hwlib::cout << "The temperature is: " << tem1 << "," << tem2 << hwlib::endl;
-	hwlib::cout << "The checksum is: " << sum << hwlib::endl;
-	return tem1;
-};
-
 void temperature::print(){
 	int hum1 = getByte();
 	int hum2 = getByte();
-	int tem1 = getByte();
+	int temC = getByte();
 	int tem2 = getByte();
 	int sum = getByte();
+	
+	int temF = temC*1.8 + 32;
+	int temG = temC/3;
 	hwlib::cout << "The humidity is: " << hum1 << "," << hum2 << hwlib::endl;
-	hwlib::cout << "The temperature is: " << tem1 << "," << tem2 << hwlib::endl;
+	hwlib::cout << "The temperature in C is: " << temC << "," << tem2 << hwlib::endl;
+	hwlib::cout << "The temperature in F is: " << temF << hwlib::endl;
+	hwlib::cout << "The temperature on a scale of 1 to 10 is: " << temG << hwlib::endl;
 	hwlib::cout << "The checksum is: " << sum << hwlib::endl;
+};
+
+int temperature::tempC(){
+	getByte();
+	getByte();
+	int tem1 = getByte();
+	int tem2 = getByte();
+	getByte();
+	
+	hwlib::cout << "The temperature in C is: " << tem1 + offset << "," << tem2 << hwlib::endl;
+	return tem1 + offset;
+};
+
+float temperature::tempF(){
+	float c = tempC();
+	c = c*1.8 + 32;
+	hwlib::cout << "The temperature in F is: " << int(c) << hwlib::endl;
+	return c;
+};
+
+int temperature::tempG(){
+	int c = tempC();
+	c /= 3;
+	hwlib::cout << "The temperature on a scale of 1 to 10 is: " << c << hwlib::endl;
+	return c;
 };

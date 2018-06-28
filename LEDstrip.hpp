@@ -18,6 +18,11 @@
 
 #include "hwlib.hpp"
 
+/// \brief
+/// This class defines the WS2801 LED strip and it's functions
+/// \details
+/// This class needs the pins used for the clock and data line of the LED strip. As well as the amount of LEDS on the strip.
+/// I chose to only operate the entire strip at once because I use plain colors and there is no need for seperate colors per LED.
 class LEDstrip{
 private:
 	hwlib::target::pin_out clock;

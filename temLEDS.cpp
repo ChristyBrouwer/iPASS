@@ -17,7 +17,7 @@
 #include "temLEDS.hpp"
 
 void temLEDS::init(){
-	int temp = sensor.temp();
+	int temp = sensor.tempC();
 	/// I chose for disco function if it's under 0 zero degrees, this because of aesthetic reasons (christmas tree)
 	if(temp > 0 and temp < 10){
 		LEDS.color(0, 8, 0);

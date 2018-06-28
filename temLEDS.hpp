@@ -20,6 +20,10 @@
 #include "temperature.hpp"
 #include "LEDstrip.hpp"
 
+/// \brief
+/// This class defines combination of the DHT11 sensor and the WS2801 LEDS
+/// \details
+/// This class needs a set up temperature class and a set up LEDstrip class. It combines their functions to achieve a temperature based LED strip.
 class temLEDS{
 private:
 	temperature sensor;

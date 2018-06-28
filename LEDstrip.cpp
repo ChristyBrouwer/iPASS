@@ -54,18 +54,18 @@ void LEDstrip::color(int red, int green, int blue){
 
 void LEDstrip::disco(){
 	while(1){
-		for(int i = 0 ; i < 10; i++){
-			color(83,0,0);
+		for(int i = 0 ; i < 1000; i++){
+			color(255,0,0);
 			hwlib::wait_ms(100);
-			color(0,0,51);
+			color(0,0,160);
 			hwlib::wait_ms(100);
-			color(83,51,0);
+			color(255,160,0);
 			hwlib::wait_ms(100);
-			color(0,255,51);
+			color(0,255,160);
 			hwlib::wait_ms(100);
-			color(0,127,0);
+			color(0,180,0);
 			hwlib::wait_ms(100);
-			color(83,0,51);
+			color(255,0,160);
 			hwlib::wait_ms(100);
 		}
 	}

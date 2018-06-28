@@ -35,12 +35,27 @@ int main( void ){
 	auto temp = hwlib::target::pin_oc(hwlib::target::pins::d24);
 
 	LEDstrip strip = {cl, data,16};
-	temperature a = temperature(temp);
-	temLEDS test = temLEDS(a, strip);
+	temperature tem = temperature(temp);
+	temLEDS comb = temLEDS(tem, strip);
 	
-	while(1){
-		a.request();
-		test.init();
+	strip.off();
+	hwlib::wait_ms(10000);
+	
+	strip.color(255, 0, 0);
+	hwlib::wait_ms(10000);
+	strip.color(0, 255, 0);
+	hwlib::wait_ms(10000);
+	strip.color(0, 0, 255);
+	hwlib::wait_ms(10000);
+	
+	tem.request();
+	tem.print();
+	hwlib::wait_ms(10000);
+	
+	for(int i=0; i <100; i++){
+		tem.request();
+		comb.init();
 		hwlib::wait_ms(5000);
 	}
+	strip.disco();
 }

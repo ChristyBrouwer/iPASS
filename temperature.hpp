@@ -18,8 +18,14 @@
 
 #include "hwlib.hpp"
 
+/// \brief
+/// This class defines the DHT11 sensor, specifically the temperature part
+/// \details
+/// This class needs the pin used for the data line of the sensor, it needs to be intialised as an OC pin.
+/// This class doesn't need any other parameters.
 class temperature{
 private:
+	int offset = -3;
 	hwlib::target::pin_oc & pin;
 public:
 	temperature(hwlib::target::pin_oc & pin):
@@ -54,7 +60,23 @@ public:
 /// Cycles through all the bytes and prints these in order to be able to check them
 /// Only returns the full temperature, decimals aren't included
 /// This causes the temperature to have a possibility of being off by one degree
-	int temp();
+	int tempC();
+
+/// \brief
+/// Returns only the temperature in Fahrenheit, without decimals.
+/// \details
+/// Cycles through all the bytes and prints these in order to be able to check them
+/// Only returns the full temperature, decimals aren't included. Uses tempC()
+/// This causes the temperature to have a possibility of being off by one degree
+	float tempF();
+
+/// \brief
+/// Returns only the temperature in a grade between 0 and 10
+/// \details
+/// Cycles through all the bytes and prints these in order to be able to check them
+/// Only returns the full temperature, decimals aren't included. Uses tempC()
+/// This causes the temperature to have a possibility of being off by one degree
+	int tempG();
 };
 
 #endif // TEMPERATURE_HPP
